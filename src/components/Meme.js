@@ -10,6 +10,14 @@ export default function Meme() {
     randomImage: "http://i.imgflip.com/1bij.jpg",
   });
 
+  React.useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllMemeImages(data);
+      });
+  }, []);
+
   function getMemeImage() {
     const id =
       Math.floor(Math.random() * (allMemeImages.data.memes.length - 1)) + 1;
